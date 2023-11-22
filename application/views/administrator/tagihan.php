@@ -15,7 +15,7 @@
     <th>NAMA LENGKAP</th>
     <th>ALAMAT</th>
     <th>EMAIL</th>
-    <th colspan="4">AKSI</th>
+    <th colspan="2">AKSI</th>
 </tr>
 
 <?php
@@ -29,9 +29,8 @@ foreach ($mahasiswa as $mhs) : ?>
     <td><?php echo $mhs->email ?></td>
     <td width = 20px><?php echo anchor('administrator/tagihan/detail/' .$mhs->id, '<div class="btn btn-sm btn-primary"><i class = "fa fa-eye"> </i></div>') ?></td>
     <td width = 20px><?php echo anchor('administrator/tagihan/tambah_tagihan/' .$mhs->id, '<div class="btn btn-sm btn-primary"><i class = "fa-solid fa-plus"> </i></div>') ?></td>
-    <td width = 20px><?php echo anchor('administrator/tagihan/edit_tagihan/' .$mhs->id, '<div class="btn btn-sm btn-primary"><i class = "fa fa-edit"> </i></div>') ?></td>
+
     
-    <td width = 20px><?php echo anchor('administrator/tagihan/hapus_tagihan/' .$mhs->id, '<div class="btn btn-sm btn-danger"><i class = "fa fa-trash"> </i></div>') ?></td>
 </tr>
 
 

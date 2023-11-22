@@ -45,9 +45,9 @@
         return $query->row();
     }
 
-    public function update_tagihan($id_mahasiswa, $data) {
+    public function update_tagihan($id_tagihan, $data) {
         // Update the tagihan entry
-        $this->db->where('id_mahasiswa', $id_mahasiswa);
+        $this->db->where('id_tagihan', $id_tagihan);
         $this->db->update('tagihan', $data);
     }
 

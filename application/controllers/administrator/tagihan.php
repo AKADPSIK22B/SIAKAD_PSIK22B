@@ -135,11 +135,12 @@
                 redirect('administrator/tagihan');
             }
 
-            public function edit_tagihan($id_mahasiswa) {
+            public function edit_tagihan($id_tagihan) {
                 // Assume $id_mahasiswa is passed as a parameter representing the tagihan ID to be edited
             
                 // Retrieve existing tagihan data
-                $data['tagihan'] = $this->tagihan_model->get_tagihan_by_id($id_mahasiswa);
+                $data['tagihan'] = $this->tagihan_model->get_by_id($id_tagihan);
+                $id_mahasiswa = $data['tagihan']->id_mahasiswa;
                 $data['mahasiswa'] = $this->db->query("select * from mahasiswa mhs, prodi prd where mhs.nama_prodi=prd.nama_prodi and mhs.id='$id_mahasiswa'")->result();
                 $data_admin = $this->getAdminData();
                 if (!$data['tagihan']) {
@@ -159,7 +160,7 @@
                 $this->load->view('templates_administrator/footer');
             }
             
-            public function update_tagihan($id_mahasiswa) {
+            public function update_tagihan($id_tagihan) {
                 // Assume $id_mahasiswa is passed as a parameter representing the tagihan ID to be updated
             
                 // Handle form submission
@@ -168,7 +169,7 @@
             
                 if ($this->form_validation->run() == FALSE) {
                     // If validation fails, redisplay the form with validation errors
-                    $this->edit_tagihan($id_mahasiswa);
+                    $this->edit_tagihan($id_tagihan);
                 } else {
                     // If validation passes, update the tagihan data
                     $nama_tagihan = $this->input->post('nama_tagihan');
@@ -187,7 +188,7 @@
                         
                     );
             
-                    $this->tagihan_model->update_tagihan($id_mahasiswa, $data);
+                    $this->tagihan_model->update_tagihan($id_tagihan, $data);
             
                     // Set flashdata or any success message
                     $this->session->set_flashdata('pesan', '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">

@@ -5,8 +5,8 @@
 </div>
 
 <?php foreach($mahasiswa as $mhs) : ?>
-<?php echo form_open_multipart('administrator/tagihan/update_tagihan/' . $tagihan->id_mahasiswa)?>
-<div class="form-group">
+<?php echo form_open_multipart('administrator/tagihan/update_tagihan/' . $tagihan->id_tagihan)?>
+<div class="form-group ">
     <label for="">NIM Mahasiswa</label>
     <input type="hidden" name="id_mahasiswa" class="form-control" id=""  value="<?= set_value('jumlah', $tagihan->id_mahasiswa);?>">
     <input type="text" name="nim" class="form-control" id="" readonly value="<?php echo $mhs->nim  ?>">
@@ -51,10 +51,12 @@
     <?php echo form_error('tenggat_tagihan', '<div class="text-danger small ml-3">', '</div>'); ?>
 </div>
 
-
+<div class="d-flex justify-content-between">
 <button type="submit" class="btn btn-sm btn-primary">UBAH TAGIHAN</button>
 
 <?= form_close(); ?>
 <?php endforeach; ?>
+<?php echo anchor('administrator/tagihan', '<div class="btn btn-sm btn-danger">Kembali</div>') ?>
+</div>
 
 </div>

@@ -73,7 +73,11 @@ foreach ($tagihan_belum_lunas as $bill):
                 <strong>TENGGAT TAGIHAN :</strong> <?php echo $bill->tenggat_tagihan; ?>
             </li>
         </ul>
-        
+        <div class="d-flex gap-2 ml-3">
+            
+            <td class="ml-3" width = 20px><?php echo anchor('administrator/tagihan/edit_tagihan/' .$bill->id_tagihan, '<div class="btn btn-sm btn-primary"><i class = "fa fa-edit"> </i></div>') ?></td>
+            <td width = 20px><?php echo anchor('administrator/tagihan/hapus_tagihan/' .$bill->id_tagihan, '<div class="btn btn-sm btn-danger"><i class = "fa fa-trash"> </i></div>') ?></td>
+        </div>
     </div>
 
 
