@@ -3,23 +3,29 @@
 class Jurusan extends CI_Controller{
 
     public function index(){
+
         $data_admin = $this->getAdminData();
         $data['jurusan'] = $this->jurusan_model->tampil_data()->result();
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar',$data_admin);
+
         $this->load->view('administrator/jurusan', $data);
         $this->load->view('templates_administrator/footer');
     }
 
     public function input(){
+
         $data_admin = $this->getAdminData();
+
         $data = array(
             'id_jurusan' => set_value('id_jurusan'),
             'kode_jurusan' => set_value('kode_jurusan'),
             'nama_jurusan' => set_value('nama_jurusan'),           
         );
         $this->load->view('templates_administrator/header');
+
         $this->load->view('templates_administrator/sidebar', $data_admin);
+
         $this->load->view('administrator/jurusan_form', $data);
         $this->load->view('templates_administrator/footer');
     }
@@ -49,11 +55,13 @@ class Jurusan extends CI_Controller{
     }
 
     public function update($id){
+
         $data_admin = $this->getAdminData();
         $where = array('id_jurusan' => $id);
         $data['jurusan'] = $this->jurusan_model->edit_data($where, 'jurusan')->result();
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar', $data_admin);
+
         $this->load->view('administrator/jurusan_update', $data);
         $this->load->view('templates_administrator/footer');
     }
@@ -86,6 +94,7 @@ class Jurusan extends CI_Controller{
        </div>');
         redirect('administrator/jurusan');
     }
+
 
     private function getAdminData() {
         $dataa = $this->user_model->ambil_data($this->session->userdata('username'));

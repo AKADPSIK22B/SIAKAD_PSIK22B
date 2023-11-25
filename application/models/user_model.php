@@ -6,6 +6,7 @@ class User_model extends CI_Model{
         return $this->db->get('user')->row();
     }
 
+
     public function insert_user($data) {
         $this->db->insert('user', $data);
     }
@@ -20,6 +21,7 @@ class User_model extends CI_Model{
 
     return $query->row(); // Mengembalikan satu baris data
 }
+
 
 }
 

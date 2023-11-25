@@ -22,6 +22,7 @@ class Auth extends CI_Controller{
             $password = $this->input->post('password');
 
             $user = $username;
+
             $hashed_password_from_db = $this->login_model->get_hashed_password($username);
 
             $cek = $this->login_model->cek_login($user, $hashed_password_from_db);
@@ -35,14 +36,19 @@ class Auth extends CI_Controller{
                     $sess_data['level'] = $ck->level;
                     $sess_data['id_mahasiswa'] = $ck->id_mahasiswa;
             
+
+            
                     $this->session->set_userdata($sess_data);
                 }
 
                 if($sess_data['level'] == 'admin'){
                     redirect('administrator/dashboard');
+
                 }elseif ($sess_data['level'] == 'user') {
                     redirect('user/dashboard');
                 }
+
+                
                 else{
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Username Atau Password Salah! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

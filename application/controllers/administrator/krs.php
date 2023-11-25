@@ -6,10 +6,12 @@ class Krs extends CI_Controller{
             'nim' => set_value('nim'),
             'id_thn_akad' => set_value('id_thn_akad')
         );
+
         $data_admin = $this->getAdminData();
 
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar', $data_admin);
+
         $this->load->view('administrator/masuk_krs', $data);
         $this->load->view('templates_administrator/footer');
     }
@@ -44,10 +46,12 @@ class Krs extends CI_Controller{
             'prodi' => $this->mahasiswa_model->get_by_id($nim)->nama_prodi,
         );
 
+
         $data_admin = $this->getAdminData();
 
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar',$data_admin);
+
         $this->load->view('administrator/krs_list', $dataKrs);
         $this->load->view('templates_administrator/footer');
 
@@ -80,9 +84,11 @@ class Krs extends CI_Controller{
             'nim' => $nim,
             'kode_matakuliah' => set_value('kode_matakuliah'),
         );
+
         $data_admin = $this->getAdminData();
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar', $data_admin);
+
         $this->load->view('administrator/krs_form', $data);
         $this->load->view('templates_administrator/footer');
     }
@@ -117,6 +123,7 @@ public function _rules() {
     $this->form_validation->set_rules('kode_matakuliah','kode_matakuliah','required');
     
 }
+
 private function getAdminData() {
     $dataa = $this->user_model->ambil_data($this->session->userdata('username'));
     return array(
@@ -124,6 +131,7 @@ private function getAdminData() {
         'level' => $dataa->level, 
     );
 }
+
 
 }
 

@@ -69,6 +69,7 @@
 </div>
 
 <div class="form-group">
+
     <label for="">LEVEL</label>
     <select name="level" class="form-control" id="">
         <option>--Pilih level--</option>
@@ -79,6 +80,7 @@
 </div>
 
 <div class="form-group">
+
     <label for="">Foto</label><br>
     <input type="file" name="photo">
 </div>

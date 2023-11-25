@@ -1,4 +1,4 @@
-        <?php 
+<?php 
         class Tagihan extends CI_Controller{
 
             public function index(){

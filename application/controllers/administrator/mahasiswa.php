@@ -2,28 +2,34 @@
 
 class Mahasiswa extends CI_Controller{
     public function index() {
+
         $data_admin = $this->getAdminData();
         $data['mahasiswa'] = $this->mahasiswa_model->tampil_data('mahasiswa')->result();
         
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar',$data_admin);
+
         $this->load->view('administrator/mahasiswa', $data);
         $this->load->view('templates_administrator/footer');
     }
 
     public function detail($id){
         $data['detail'] = $this->mahasiswa_model->ambil_id_mahasiswa($id);
+
         $data_admin = $this->getAdminData();
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar', $data_admin);
+
         $this->load->view('administrator/mahasiswa_detail', $data);
         $this->load->view('templates_administrator/footer');
     }
     public function tambah_mahasiswa(){
+
         $data_admin = $this->getAdminData();
         $data['prodi'] = $this->mahasiswa_model->tampil_data('prodi')->result();
         $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar', $data_admin);
+
         $this->load->view('administrator/mahasiswa_form', $data);
         $this->load->view('templates_administrator/footer');
 }
@@ -42,10 +48,12 @@ else{
     $tanggal_lahir=$this->input->post('tanggal_lahir');
     $jenis_kelamin=$this->input->post('jenis_kelamin');
     $nama_prodi=$this->input->post('nama_prodi');
+
     $level = $this->input->post('level');
     $photo=$_FILES['photo'];
     $password = password_hash($nim, PASSWORD_DEFAULT);
    
+
     if($photo=''){}else{
         $config ['upload_path']= './assets/uploads';
         $config ['allowed_types']= 'jpg|png|jpeg';
@@ -69,6 +77,7 @@ else{
         'nama_prodi'=> $nama_prodi,
         'photo'=> $photo
     );
+
     
     $this->mahasiswa_model->insert_data($data,'mahasiswa');
     $id_mahasiswa = $this->db->insert_id();
@@ -95,16 +104,19 @@ public function update($id){
     $data['mahasiswa'] = $this->db->query("select * from mahasiswa mhs, prodi prd where mhs.nama_prodi=prd.nama_prodi and mhs.id='$id'")->result();
     $data['prodi'] = $this->matakuliah_model->tampil_data('prodi')->result();
     $data['detail'] = $this->mahasiswa_model->ambil_id_mahasiswa($id);
+
     $data_admin = $this->getAdminData();
     $this->load->view('templates_administrator/header');
         $this->load->view('templates_administrator/sidebar', $data_admin);
         $this->load->view('administrator/mahasiswa_update', $data);
         $this->load->view('templates_administrator/footer');
 }
+
 public function update_mahasiswa_aksi($id){
     $this->_rules();
     if($this->form_validation->run() == FALSE){
         $this->update($id);
+
 }
 else{
     $id = $this->input->post('id');
@@ -171,7 +183,9 @@ public function _rules(){
     $this->form_validation->set_rules('tanggal_lahir','tanggal_lahir', 'required', ['required' => 'Tanggal Lahir wajib diisi!']);
     $this->form_validation->set_rules('jenis_kelamin','jenis_kelamin', 'required', ['required' => 'Jenis Kelamin wajib diisi!']);
     $this->form_validation->set_rules('nama_prodi','nama_prodi', 'required', ['required' => 'Program Studi wajib diisi!']);
+
     $this->form_validation->set_rules('level','level', 'required', ['required' => 'Level wajib diisi!']);
+
 }
 
 public function delete($id){
@@ -183,6 +197,7 @@ public function delete($id){
     redirect('administrator/mahasiswa');
 }
 
+
 private function getAdminData() {
     $dataa = $this->user_model->ambil_data($this->session->userdata('username'));
     return array(
@@ -190,6 +205,7 @@ private function getAdminData() {
         'level' => $dataa->level, 
     );
 }
+
 
 }
 ?>
