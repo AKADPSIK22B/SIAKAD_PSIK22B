@@ -15,7 +15,7 @@
 <?php
 
 foreach ($beasiswa as $mhs) : ?>
-    <div class="card mb-3">
+    <div class="card">
     <div class="card-header">
         BEASISWA <span style="color: green;" class="font-weight-bold"><?= $mhs->status?></span>
     </div>

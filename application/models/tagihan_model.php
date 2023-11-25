@@ -23,9 +23,9 @@
         return $query->num_rows() > 0;
     }
 
-    public function hapus_tagihan($id_mahasiswa) {
+    public function hapus_tagihan($id_tagihan) {
         // Delete the tagihan entry
-        $this->db->where('id_mahasiswa', $id_mahasiswa);
+        $this->db->where('id_tagihan', $id_tagihan);
         $this->db->delete('tagihan');
     }
 

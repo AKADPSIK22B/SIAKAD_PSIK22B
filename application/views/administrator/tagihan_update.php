@@ -39,8 +39,8 @@
 <div class="form-group">
     <label for="">Status Tagihan</label>
     <select name="status_tagihan" class="form-control">
-        <option value="Aktif" <?= set_select('status_tagihan', 'Aktif', ($tagihan->status_tagihan == 'Aktif')); ?>>Aktif</option>
-        <option value="Lunas" <?= set_select('status_tagihan', 'Lunas', ($tagihan->status_tagihan == 'Lunas')); ?>>Lunas</option>
+        <option value="BELUM LUNAS" <?= set_select('status_tagihan', 'BELUM LUNAS', ($tagihan->status_tagihan == 'BELUM LUNAS')); ?>>BELUM LUNAS</option>
+        <option value="LUNAS" <?= set_select('status_tagihan', 'LUNAS', ($tagihan->status_tagihan == 'LUNAS')); ?>>LUNAS</option>
     </select>
     <?php echo form_error('status_tagihan', '<div class="text-danger small ml-3">', '</div>'); ?>
 </div>

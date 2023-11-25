@@ -6,23 +6,24 @@
 
 <?php echo $this->session->flashdata('pesan') ?>
 
-<?php echo anchor('administrator/beasiswa/tambah_beasiswa', '<button class = "btn btn-sm btn-primary mb-3"><i class="fas fa-plus fa-sm"></i> Tambah Beasiswa</button>') ?>
+<?php echo anchor('user/beasiswa/lihat_beasiswa', '<button class = "btn btn-sm btn-primary mb-3"><i class="fas fa-eye fa-sm"></i> Lihat Pengajuan</button>') ?>
 
 
 <?php
 
-foreach ($beasiswa as $mhs) : ?>
-    <div class="card">
+foreach ($beasiswa as $bws) : ?>
+    <div class="card mb-3">
     <div class="card-header">
-        BEASISWA <span style="color: green;" class="font-weight-bold"><?= $mhs->status?></span>
+        BEASISWA <span style="color: green;" class="font-weight-bold"><?= $bws->status?></span>
     </div>
     <div class="card-body ">
-        <h5 class="card-title"><?= $mhs->nama_beasiswa?></h5>
-        <p class="card-text"><?= $mhs->deskripsi ?></p>
+        <h5 class="card-title"><?= $bws->nama_beasiswa?></h5>
+        <p class="card-text"><?= character_limiter($bws->deskripsi, 100); ?></p>
         <div class="d-flex justify-content-between">
-        <a href="#" class="btn btn-primary">Lihat Detail</a>
-        <?php echo anchor('administrator/beasiswa/ajukan/' .$mhs->id_beasiswa, '<div class="btn btn-sm btn-outline-success">AJUKAN</div>') ?>
-        </div>
+        
+        <?php echo anchor('user/beasiswa/detail_beasiswa/' .$bws->id_beasiswa, '<div class="btn btn-sm btn-primary">Lihat Detail</div>') ?>
+        <?php echo anchor('user/beasiswa/ajukan/' .$bws->id_beasiswa, '<div class="btn btn-sm btn-outline-success">AJUKAN</div>') ?>
+    </div>
     </div>
     </div>
 

@@ -16,6 +16,11 @@ class Beasiswa_model extends CI_Model
         return $this->db->get_where('beasiswa', ['id_beasiswa' => $id_beasiswa])->row();
     }
 
+    public function get_pengajuan_by_id($id_pengajuan)
+    {
+        return $this->db->get_where('pengajuan_beasiswa', ['id_pengajuan' => $id_pengajuan])->row();
+    }
+
     public function ajukan_beasiswa($data)
     {
         $this->db->insert('pengajuan_beasiswa', $data);
@@ -25,6 +30,24 @@ class Beasiswa_model extends CI_Model
     public function get_pengajuan_by_mahasiswa($id_mahasiswa)
     {
         return $this->db->get_where('pengajuan_beasiswa', ['id_mahasiswa' => $id_mahasiswa])->result();
+    }
+
+    public function get_beasiswa_by_pengajuan_id($id_pengajuan) {
+        $this->db->select('beasiswa.*');
+        $this->db->from('beasiswa');
+        $this->db->join('pengajuan_beasiswa', 'beasiswa.id_beasiswa = pengajuan_beasiswa.id_beasiswa');
+        $this->db->where('pengajuan_beasiswa.id_pengajuan', $id_pengajuan);
+        return $this->db->get()->row();
+    }
+
+    public function get_all_pengajuan_with_details() {
+        // Assuming you have a relationship between pengajuan_beasiswa and mahasiswa
+        $this->db->select('pengajuan_beasiswa.*, mahasiswa.nim, mahasiswa.nama_lengkap, beasiswa.nama_beasiswa');
+        $this->db->from('pengajuan_beasiswa');
+        $this->db->join('mahasiswa', 'pengajuan_beasiswa.id_mahasiswa = mahasiswa.id');
+        $this->db->join('beasiswa', 'pengajuan_beasiswa.id_beasiswa = beasiswa.id_beasiswa');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function get_all_pengajuan()

@@ -105,15 +105,16 @@
                 $this->form_validation->set_rules('tenggat_tagihan', 'Tenggat Tagihan', 'required|date');
             }
 
-            public function hapus_tagihan($id_mahasiswa) {
+            public function hapus_tagihan($id_tagihan) {
                 // Assume $id_mahasiswa is passed as a parameter representing the tagihan ID to be deleted
-            
+                $data['tagihan'] = $this->tagihan_model->get_by_id($id_tagihan);
+                $id_mahasiswa = $data['tagihan']->id_mahasiswa;
                 // Check if the tagihan exists
                 $tagihan_exists = $this->tagihan_model->cek_tagihan_exists($id_mahasiswa);
             
                 if ($tagihan_exists) {
                     // Delete the tagihan entry
-                    $this->tagihan_model->hapus_tagihan($id_mahasiswa);
+                    $this->tagihan_model->hapus_tagihan($id_tagihan);
             
                     // Set flashdata or any success message
                     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
