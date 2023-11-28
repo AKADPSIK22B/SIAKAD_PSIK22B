@@ -19,13 +19,16 @@ class Dashboard extends CI_Controller{
     {
 
         $id_mahasiswa = $this->session->userdata('id_mahasiswa');
+        $is_biodata_completed = $this->login_model->check_biodata_completion($id_mahasiswa);
+
+        if ($is_biodata_completed) {
+        // Jika biodata sudah lengkap, tampilkan halaman dashboard
         $data = $this->user_model->get_user_by_id($id_mahasiswa);
         $data_event = array(
             3  => 'Link to Event 1',
             7  => 'Link to Event 2',
             13 => 'Link to Event 3',
         );
-        
     
         if ($data) {
             $data_view = array(
@@ -51,9 +54,12 @@ class Dashboard extends CI_Controller{
             $this->load->view('user/dashboard_not_found');
             $this->load->view('templates_user/footer');
         }
+    } else {
+        // Jika biodata belum lengkap, redirect ke halaman lengkapi biodata
+        redirect('user/complete_profile');
     }
     
-    
+    }
 }
 
 ?>

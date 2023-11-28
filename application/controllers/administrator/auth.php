@@ -3,6 +3,7 @@
 class Auth extends CI_Controller{
 
     public function index(){
+        // $this->login_model->check_visited();
         $this->load->view('templates_administrator/header');
         $this->load->view('administrator/login');
         $this->load->view('templates_administrator/footer');
@@ -35,9 +36,7 @@ class Auth extends CI_Controller{
                     $sess_data['email'] = $ck->email;
                     $sess_data['level'] = $ck->level;
                     $sess_data['id_mahasiswa'] = $ck->id_mahasiswa;
-            
 
-            
                     $this->session->set_userdata($sess_data);
                 }
 

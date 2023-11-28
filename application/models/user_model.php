@@ -22,6 +22,15 @@ class User_model extends CI_Model{
     return $query->row(); // Mengembalikan satu baris data
 }
 
+public function insert_biodata_mahasiswa($data) {
+    $this->db->insert('biodata_mahasiswa', $data);
+    return $this->db->insert_id(); // Mengembalikan ID yang baru saja dimasukkan
+}
+
+public function update_status_biodata($id_mahasiswa) {
+    $this->db->where('id', $id_mahasiswa);
+    $this->db->update('mahasiswa', array('status_biodata' => 'sudah'));
+}
 
 }
 

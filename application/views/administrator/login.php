@@ -39,7 +39,7 @@
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login Administrator</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                         <?php echo $this->session->flashdata('pesan') ?>
                                     </div>
                                     <form method = "post" action = "<?php echo base_url('administrator/auth/proses_login') ?>" class="user">
