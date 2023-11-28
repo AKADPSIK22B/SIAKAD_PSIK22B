@@ -2,6 +2,20 @@
 
 class Login_model extends CI_Model{
 
+    public function check_biodata_completion($id_mahasiswa)
+    {
+        $this->db->where('id', $id_mahasiswa);
+        $this->db->select('status_biodata');
+        $query = $this->db->get('mahasiswa');
+    
+        if ($query->num_rows() > 0) {
+            $result = $query->row();
+            return $result->status_biodata == 'sudah';
+        }
+    
+        return false;
+    }
+    
     public function cek_login($username, $password){
         $this->db->where("username", $username);
         $this->db->where("password", $password);
